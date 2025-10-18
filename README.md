@@ -179,3 +179,9 @@ For support and questions, please create an issue in the repository.
 ## License
 
 ISC License
+
+<img width="2560" height="1254" alt="Screenshot 2025-10-18 172857" src="https://github.com/user-attachments/assets/9f7e9504-ec7f-4b58-8bfb-4e8951ac13fe" />
+
+<img width="2560" height="1247" alt="Screenshot 2025-10-18 172944" src="https://github.com/user-attachments/assets/03486cbf-c988-46b2-90c2-215b1121d63c" />
+
+<img width="1222" height="1190" alt="Screenshot 2025-10-18 173109" src="https://github.com/user-attachments/assets/597616de-8d78-4b99-9f10-2a4e0a77c0cd" />
