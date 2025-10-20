@@ -3,18 +3,18 @@ import { BasePage } from "./basePage";
 
 export class DashboardPage extends BasePage {
     // Page elements
-    private readonly dashboardHeading: Locator;
+    private readonly pageLocator: Locator;
 
     constructor(page: Page) {
         super(page);
-        this.dashboardHeading = this.page.getByRole('heading', { name: 'Dashboard' });
+        this.pageLocator = this.page.getByRole('heading', { name: 'Dashboard' });
     }
 
     /**
      * Check if dashboard is displayed
      */
-    async isDashboardDisplayed(): Promise<boolean> {
-        return await this.dashboardHeading.isVisible();
+    async isOnPage(): Promise<boolean> {
+        return await this.pageLocator.isVisible();
     }
 
     /**
@@ -22,6 +22,6 @@ export class DashboardPage extends BasePage {
      */
     async verifyDashboardPage() {
         await this.verifyUrl('dashboard');
-        await expect(this.dashboardHeading).toBeVisible();
+        await expect(this.pageLocator).toBeVisible();
     }
 }

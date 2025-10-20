@@ -1,18 +1,27 @@
 import { test, expect } from '@playwright/test';
 
-test.skip('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test.skip('API check', async ({ request }) => {
+  const loginResponse = await request.get('/web/index.php/auth/login')
+  const htmlSourceText = await loginResponse.text()
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
+  const matcher = htmlSourceText.match(/:token="&quot;(.+?)&quot;"/)
+  const csrfToken = matcher ? matcher[1] : null
+  console.log(' 📋 CSRF Token:', csrfToken)
+  process.env['CSRF_TOKEN'] = csrfToken
 
-test.skip('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+  const validateResponse = await request.post('/web/index.php/auth/validate',
+    {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'
+      },
+      form: {
+        username: process.env.ADMIN_USER_NAME,
+        password: process.env.ADMIN_PASSWORD,
+        _token: csrfToken
+      }
+    }
+  )
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+  expect(validateResponse.status() == 200).toBeTruthy()
 });

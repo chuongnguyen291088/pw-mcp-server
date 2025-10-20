@@ -6,9 +6,10 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 export default defineConfig({
   testDir: './tests',
+  outputDir: 'test-results',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 2 : 1,
   workers: process.env.CI ? 1 : undefined,
   reporter: [
     ['list', { printSteps: true }],
@@ -19,7 +20,11 @@ export default defineConfig({
       suiteTitle: false
     }]
   ],
+  timeout: 90 * 1000,
+
   use: {
+    actionTimeout: 15 * 1000,
+    navigationTimeout: 30 * 1000,
     baseURL: process.env.BASE_URL,
     headless: true,
     screenshot: {
@@ -27,7 +32,7 @@ export default defineConfig({
       fullPage: true
     },
     video: {
-      mode: 'retain-on-failure'
+      mode: 'on'
     },
     trace: 'retain-on-failure',
     acceptDownloads: true,
@@ -36,8 +41,8 @@ export default defineConfig({
 
   projects: [
     {
-      name: 'automation playwright mcp-server',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'automation-playwright-mcp-server',
+      use: { browserName: 'chromium' },
     },
 
     // {

@@ -2,6 +2,8 @@ import { test } from '@playwright/test';
 import { epic, feature, story, tags, owner } from "allure-js-commons";
 import { PageManager } from '../page-objects/pageManager';
 
+const authFilePath = '.auth/user.json'
+
 test.describe('OrangeHRM Tests', {
     annotation: [
         { type: 'Epic', description: 'Signing in' },
@@ -24,7 +26,7 @@ test.describe('OrangeHRM Tests', {
             { type: 'Story', description: 'As an active user, I want to successfully sign in using a valid password' }
         ],
         tag: ['@signin', '@ui', '@positive']
-    }, async () => {
+    }, async ({ page }) => {
 
         await test.step('Given I am on the login page', async () => {
             await pm.onLoginPage().isLoginPageDisplayed();
@@ -32,6 +34,7 @@ test.describe('OrangeHRM Tests', {
 
         await test.step('When I login with valid credentials', async () => {
             await pm.onLoginPage().login(process.env.ADMIN_USER_NAME, process.env.ADMIN_PASSWORD);
+            await page.context().storageState({ path: authFilePath })
         });
 
         await test.step('Then I should be on the Dashboard page', async () => {

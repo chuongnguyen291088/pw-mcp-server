@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "npx playwright test --project=\"automation-playwright-mcp-server\"",
     "allure-reporter": "npx allure generate ./allure-results --clean --name \"Automation-Test-Report\" -o ./allure-report && npx allure open ./allure-report"
   },
   "repository": {
