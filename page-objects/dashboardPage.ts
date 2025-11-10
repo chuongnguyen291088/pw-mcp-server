@@ -14,6 +14,11 @@ export class DashboardPage extends BasePage {
      * Check if dashboard is displayed
      */
     async isOnPage(): Promise<boolean> {
+        try {
+            await this.pageLocator.waitFor({ state: 'visible' })
+        } catch (error) {
+            return false
+        }
         return await this.pageLocator.isVisible();
     }
 
