@@ -9,7 +9,7 @@ export default defineConfig({
   outputDir: 'test-results',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 1,
+  retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: [
     ['list', { printSteps: true }],
@@ -28,11 +28,12 @@ export default defineConfig({
     baseURL: process.env.BASE_URL,
     headless: true,
     screenshot: {
-      mode: 'only-on-failure',
+      mode: 'on',
       fullPage: true
     },
     video: {
-      mode: 'on'
+      mode: 'retain-on-failure',
+      size: { height: 1920, width: 1080 }
     },
     trace: 'retain-on-failure',
     acceptDownloads: true,
@@ -41,14 +42,22 @@ export default defineConfig({
 
   projects: [
     {
-      name: 'automation-playwright-mcp-server',
-      use: { browserName: 'chromium' },
+      name: 'authentication-setup',
+      testMatch: '**/authentication.setup.ts'
     },
 
-    // {
-    //   name: 'chromium',
-    //   use: { ...devices['Desktop Chrome'] },
-    // },
+    {
+      name: 'automation-playwright-mcp-server',
+      use: { browserName: 'chromium', storageState: path.join(__dirname, '.auth/auth.json') },
+      dependencies: ['authentication-setup'],
+      testMatch: '**/01**'
+    },
+
+    {
+      name: 'orangeHrm',
+      use: { browserName: 'chromium' },
+      testMatch: '**/orangeHrm.spec.ts'
+    },
 
     // {
     //   name: 'firefox',
