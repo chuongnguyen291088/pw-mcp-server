@@ -17,7 +17,7 @@ export class APILogger {
 
     logRequest(method: string, url: string, headers: Record<string, string>, body?: any, options: LogOptions = {}) {
         const { logHeaders = true, logBody = true } = options;
-        const logData = { method, url, headers: logHeaders ? headers : '🔐<headers hidden>', body: logBody ? body : '🔐<body hidden>' };
+        const logData = { method, url, headers: logHeaders ? headers : '🔐<headers hidden>🔐', body: logBody ? body : '🔐<body hidden>🔐' };
         this.addLog('Request', logData);
 
         logger.info({
@@ -30,7 +30,7 @@ export class APILogger {
 
     logResponse(statusCode: number, body?: any, options: LogOptions = {}) {
         const { logBody = true } = options;
-        const logData = { statusCode, body: logBody ? body : '🔐<body hidden>' };
+        const logData = { statusCode, body: logBody ? body : '🔐<body hidden>🔐' };
         this.addLog('Response', logData);
 
         logger.info({
@@ -41,8 +41,8 @@ export class APILogger {
 
     getRecentLogs(): string {
         return this.logs.map(log => {
-            return `===== ${log.type} Details [${log.timestamp}] =====\n${JSON.stringify(log.data, null, 2)}`;
-        }).join('\n' + '-'.repeat(50) + '\n\n');
+            return `🌐🌐🌐 ${log.type} Details [${log.timestamp}] 🌐🌐🌐\n${JSON.stringify(log.data, null, 2)}`;
+        }).join('\n' + '-'.repeat(50) + '\n');
     }
 
     clearLogs() {
