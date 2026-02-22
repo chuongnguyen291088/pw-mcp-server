@@ -1,13 +1,13 @@
-import { Page, Locator, expect } from "@playwright/test";
+import { Page, Locator } from "@playwright/test";
 import { BasePage } from "./BasePage";
 
-export class LeavePage extends BasePage {
+export class RecruitmentPage extends BasePage {
     // Page elements
     private readonly pageLocator: Locator;
 
     constructor(page: Page) {
         super(page);
-        this.pageLocator = this.page.getByRole('heading', { name: 'Leave' }).first();
+        this.pageLocator = this.page.getByRole('heading', { name: 'Recruitment' });
     }
 
     async isOnPage(): Promise<boolean> {
