@@ -1,4 +1,3 @@
-export { BasePage } from "./BasePage";
 export { AdminPage } from "./AdminPage";
 export { BuzzPage } from "./BuzzPage";
 export { ClaimPage } from "./ClaimPage";

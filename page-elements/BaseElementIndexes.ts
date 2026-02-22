@@ -1,4 +1,3 @@
-export { BaseElement } from "./BaseElement";
 export { Textbox } from "./Textbox";
 export { Button } from "./Button";
 export { Checkbox } from "./Checkbox";
