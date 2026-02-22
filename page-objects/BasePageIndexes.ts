@@ -11,4 +11,3 @@ export { DashboardPage } from './DashboardPage';
 export { ClaimPage } from './ClaimPage';
 export { BuzzPage } from './BuzzPage';
 export { AdminPage } from './AdminPage';
-export { PageManager } from './PageManager';
