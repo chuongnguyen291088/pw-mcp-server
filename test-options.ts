@@ -1,7 +1,8 @@
 import { test as base, BrowserContext, Page } from "@playwright/test";
 import { RequestHandler } from "./utils/requestHandler";
 import { APILogger } from "./utils/apiLogger";
-import { PageManager, LoginPage, DashboardPage } from "./page-objects/BasePageIndexes";
+import { LoginPage, DashboardPage } from "./page-objects/BasePageIndexes";
+import { PageManager } from "./page-objects/PageManager";
 
 const authPathFile = '.auth/user.json'
 
