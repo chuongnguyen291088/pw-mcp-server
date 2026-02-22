@@ -1,5 +1,6 @@
 import { test, APIRequestContext } from "@playwright/test";
 import { APILogger } from "./apiLogger";
+import { properties } from "../properties.config";
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
@@ -13,7 +14,7 @@ export class RequestHandler {
     private request: APIRequestContext;
     private logger: APILogger;
     private baseURL?: string;
-    private defaultBaseURL: string = process.env.API_HOST ?? '';
+    private defaultBaseURL: string = properties.api_host ?? '';
     private apiPath: string = '';
     private queryParams: Record<string, string> = {};
     private apiHeaders: Record<string, string> = {};

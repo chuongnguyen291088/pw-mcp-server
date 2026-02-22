@@ -1,7 +1,7 @@
 import { Page, Locator, expect } from "@playwright/test";
-import { BasePage } from "./basePage";
+import { BasePage } from "./BasePage";
 
-export class PIMPage extends BasePage {
+export class PimPage extends BasePage {
     // Page elements
     private readonly pageLocator: Locator;
 

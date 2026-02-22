@@ -1,7 +1,7 @@
 import { test as base, BrowserContext, Page } from "@playwright/test";
-import { LoginPage } from "./page-objects/loginPage";
-import { DashboardPage } from "./page-objects/dashboardPage";
-import { PageManager } from "./page-objects/pageManager";
+import { LoginPage } from "./page-objects/LoginPage";
+import { DashboardPage } from "./page-objects/DashboardPage";
+import { PageManager } from "./page-objects/PageManager";
 import { RequestHandler } from "./utils/requestHandler";
 import { APILogger } from "./utils/apiLogger";
 import { logger } from "./utils/logger";

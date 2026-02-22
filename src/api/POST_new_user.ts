@@ -11,6 +11,6 @@ export class POST_new_user extends BaseEntities {
         return await this.api
             .path('/web/index.php/api/v2/admin/users')
             .body(rq)
-            .POST(200, { logRequestBody: true, logResponseBody: true })
+            .POST(200)
     }
 }

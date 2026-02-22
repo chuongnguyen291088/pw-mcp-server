@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from "@playwright/test";
-import { BasePage } from "./basePage";
+import { BasePage } from "./BasePage";
 
 export class AdminPage extends BasePage {
     // Page elements
