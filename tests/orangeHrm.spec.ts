@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 import { epic, feature, story, tags, owner } from "allure-js-commons";
-import { PageManager } from '../page-objects/pageManager';
+import { PageManager } from '../page-objects/PageManager';
 
 const authFilePath = '.auth/user.json'
 

@@ -15,6 +15,6 @@ export class GET_users extends BaseEntities {
                 "sortField": "u.userName",
                 "sortOrder": "ASC"
             })
-            .GET(200, { logRequestBody: true, logResponseBody: true })
+            .GET(200)
     }
 }

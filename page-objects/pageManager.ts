@@ -1,23 +1,25 @@
 import { Page } from "@playwright/test";
-import { LoginPage } from "./loginPage"
-import { DashboardPage } from "./dashboardPage";
-import { AdminPage } from "./adminPage";
-import { PIMPage } from "./pimPage";
-import { LeavePage } from "./leavePage";
-import { TimePage } from "./timePage";
-import { RecruitmentPage } from "./recruitmentPage";
-import { MyInfoPage } from "./myInfoPage";
-import { PerformancePage } from "./performancePage";
-import { DirectoryPage } from "./directoryPage";
-import { MaintenancePage } from "./maintenancePage";
-import { ClaimPage } from "./claimPage";
-import { BuzzPage } from "./buzzPage";
+import {
+    LoginPage,
+    DashboardPage,
+    AdminPage,
+    PimPage,
+    LeavePage,
+    TimePage,
+    RecruitmentPage,
+    MyInfoPage,
+    PerformancePage,
+    DirectoryPage,
+    MaintenancePage,
+    ClaimPage,
+    BuzzPage
+} from "./BasePageIndexes";
 
 export class PageManager {
     private readonly loginPage: LoginPage
     private readonly dashboardPage: DashboardPage
     private readonly adminPage: AdminPage
-    private readonly pimPage: PIMPage
+    private readonly pimPage: PimPage
     private readonly leavePage: LeavePage
     private readonly timePage: TimePage
     private readonly recruitmentPage: RecruitmentPage
@@ -33,7 +35,7 @@ export class PageManager {
         this.loginPage = new LoginPage(this.page)
         this.dashboardPage = new DashboardPage(this.page)
         this.adminPage = new AdminPage(this.page)
-        this.pimPage = new PIMPage(this.page)
+        this.pimPage = new PimPage(this.page)
         this.leavePage = new LeavePage(this.page)
         this.timePage = new TimePage(this.page)
         this.recruitmentPage = new RecruitmentPage(this.page)

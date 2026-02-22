@@ -1,6 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
+import { properties } from './properties.config';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
@@ -25,7 +26,7 @@ export default defineConfig({
   use: {
     actionTimeout: 15 * 1000,
     navigationTimeout: 30 * 1000,
-    baseURL: process.env.BASE_URL,
+    baseURL: properties.base_url,
     headless: true,
     screenshot: {
       mode: 'on',

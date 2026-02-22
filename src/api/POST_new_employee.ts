@@ -11,6 +11,6 @@ export class POST_new_employee extends BaseEntities {
         return await this.api
             .path('/web/index.php/api/v2/pim/employees')
             .body(rq)
-            .POST(200, { logRequestBody: true, logResponseBody: true })
+            .POST(200)
     };
 }
