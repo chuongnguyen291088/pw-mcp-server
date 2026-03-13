@@ -1,5 +1,4 @@
 import { test } from '@playwright/test';
-import { epic, feature, story, tags, owner } from "allure-js-commons";
 import { PageManager } from '../page-objects/PageManager';
 
 const authFilePath = '.auth/user.json'
@@ -29,7 +28,7 @@ test.describe('OrangeHRM Tests', {
     }, async ({ page }) => {
 
         await test.step('Given I am on the login page', async () => {
-            await pm.onLoginPage().isLoginPageDisplayed();
+            await pm.onLoginPage().isOnPage();
         });
 
         await test.step('When I login with valid credentials', async () => {
@@ -53,7 +52,7 @@ test.describe('OrangeHRM Tests', {
     }, async () => {
 
         await test.step('Given I am on the login page', async () => {
-            await pm.onLoginPage().isLoginPageDisplayed();
+            await pm.onLoginPage().isOnPage();
         });
 
         await test.step('When I login with invalid credentials', async () => {
@@ -86,7 +85,7 @@ test.describe('OrangeHRM Tests', {
         });
 
         await test.step('Then I should be back on the login page', async () => {
-            await pm.onLoginPage().isLoginPageDisplayed();
+            await pm.onLoginPage().isOnPage();
 
         });
     });

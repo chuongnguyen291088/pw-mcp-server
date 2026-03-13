@@ -2,8 +2,8 @@ import { test as setup } from "@playwright/test";
 import { RequestHandler } from "../../utils/requestHandler";
 import { APILogger } from "../../utils/apiLogger";
 import { logger } from "../../utils/logger";
+import { properties } from "../../properties.config";
 import path from "path";
-import fs from "fs/promises";
 
 const authFilePath = path.join(__dirname, '../../.auth/auth.json')
 
@@ -28,8 +28,8 @@ setup('Orange HRM Authentication', async ({ browser }) => {
 
         const validateForm = {
             _token: csrfToken,
-            username: "Admin",
-            password: "admin123"
+            username: properties.admin_username,
+            password: properties.admin_password
         };
         const validateRes =
             await api

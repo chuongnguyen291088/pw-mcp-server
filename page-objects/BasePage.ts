@@ -124,7 +124,7 @@ export abstract class BasePage {
     }
 
     async navigateToClaimPage() {
-        this.expandMenu()
+        await this.expandMenu()
         await this.page.getByRole('link', { name: 'Claim', exact: true }).click()
     }
 

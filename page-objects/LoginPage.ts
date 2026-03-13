@@ -38,7 +38,7 @@ export class LoginPage extends BasePage {
     /**
      * Check if login page is displayed
      */
-    async isLoginPageDisplayed(): Promise<boolean> {
+    async isOnPage(): Promise<boolean> {
         return await this.loginButton.isVisible();
     }
 
