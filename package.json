@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx cross-env TEST_ENV=QA npx playwright test tests/01_authorization.spec.ts",
-    "allure-reporter": "npx cross-env npx allure generate ./allure-results --clean --name \"Automation-Test-Report\" -o ./allure-report && npx allure open ./allure-report",
-    "posttest": "npm run allure-reporter"
+    "test": "npx cross-env TEST_ENV=QA npx playwright test tests/01_authorization.spec.ts"
   },
   "repository": {
     "type": "git",

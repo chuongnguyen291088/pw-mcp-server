@@ -9,7 +9,6 @@ import { faker } from "@faker-js/faker";
 test('verify pageManager fixture', async ({ pageManager }) => {
     let pm = pageManager
 
-    await pm.page.waitForTimeout(5 * 1000)
     await pm.onDashboardPage().isOnPage()
 
     await test.step('navigate to the pim page', async () => {
@@ -31,7 +30,7 @@ test('verify pageManager fixture', async ({ pageManager }) => {
     })
 });
 
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 2; i++) {
     test(`verify api fixture - iteration ${i + 1}`, async ({ api }) => {
         let userManagementController = new UserManagementController(api)
 

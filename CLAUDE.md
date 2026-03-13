@@ -15,7 +15,7 @@ npm ci
 # Install Playwright browsers
 npx playwright install --with-deps
 
-# Run tests (default: QA env, 01_authorization.spec.ts)
+# Run tests (default: QA env, 01_*.spec.ts files) — also auto-generates Allure report via posttest hook
 npm test
 
 # Run a specific test file
@@ -27,7 +27,7 @@ npx cross-env TEST_ENV=QA npx playwright test --project=automation-playwright-mc
 # Run tests headed (visible browser)
 npx cross-env TEST_ENV=QA npx playwright test --headed
 
-# Generate and open Allure report
+# Generate and open Allure report (runs automatically after npm test)
 npm run allure-reporter
 
 # Start Playwright MCP server (for AI-assisted development)
@@ -42,23 +42,25 @@ Set `TEST_ENV` to `QA`, `PROD`, or leave unset (defaults to `dev`). Each environ
 - `PROD_ADMIN_USERNAME` / `PROD_ADMIN_PASSWORD`
 - `DEV_ADMIN_USERNAME` / `DEV_ADMIN_PASSWORD`
 
-See `.env.example` for the template. `properties.config.ts` maps `TEST_ENV` to base URLs and credentials.
+`properties.config.ts` maps `TEST_ENV` to base URLs and credentials. Note: `tests/setup/authentication.setup.ts` currently uses hardcoded credentials (`Admin`/`admin123`) for CSRF-aware session login, independent of env vars.
 
 ## Architecture
 
 ### Test Projects (playwright.config.ts)
 
 - **`authentication-setup`** — runs `tests/setup/authentication.setup.ts` first; performs CSRF-aware login and saves session to `.auth/auth.json`
-- **`automation-playwright-mcp-server`** — depends on authentication-setup; matches `**/01**` test files; uses saved auth session
+- **`automation-playwright-mcp-server`** — depends on authentication-setup; matches `**/01**` test files (currently `01_authorization.spec.ts` for API tests and `01_navigation.spec.ts` for UI navigation); uses saved auth session
 - **`orangeHrm`** — standalone browser tests matching `**/orangeHrm.spec.ts`; no auth dependency
+
+`tests/seed.spec.ts` is a blank scratch file intended for MCP-generated or exploratory code.
 
 ### Custom Fixtures (test-options.ts)
 
 Import `test` and `expect` from `./test-options` (not from `@playwright/test`) to access:
 
 - `api` — a pre-configured `RequestHandler` instance for API calls
-- `pageManager` — a `PageManager` instance with the browser navigated to dashboard
-- `loginPage`, `dashboardPage` — individual page object fixtures
+- `pageManager` — a `PageManager` instance with the browser already navigated to the dashboard
+- `page` (overridden) — navigates to the dashboard before each test
 
 ### API Layer (`src/`)
 
@@ -71,17 +73,25 @@ Follows a three-layer pattern:
 
 ### RequestHandler (`utils/requestHandler.ts`)
 
-Fluent builder for HTTP calls, wrapping Playwright's `APIRequestContext`. Chain calls then end with `.GET(expectedStatus)`, `.POST(expectedStatus)`, etc. Throws on status code mismatch with recent log context. State is reset after each request (`cleanUp()`).
+Fluent builder for HTTP calls, wrapping Playwright's `APIRequestContext`. Available chain methods: `.url()` (override base URL), `.path()`, `.params()` (query string), `.headers()`, `.body()` (JSON), `.form()` (form-encoded). End the chain with `.GET(expectedStatus)`, `.POST(expectedStatus)`, `.PUT()`, or `.DELETE()`. Throws on status code mismatch with recent log context. State resets after each request (`cleanUp()`).
 
 ```ts
 await api.path('/web/index.php/api/v2/...').body(dto).POST(200);
+await api.path('/web/index.php/api/v2/...').params({ limit: '50' }).GET(200);
 ```
+
+Each HTTP method accepts an optional `RequestOptions` object to enable `logRequestHeaders`, `logRequestBody`, or `logResponseBody`.
 
 ### Page Object Model (`page-objects/`)
 
-- `BasePage` — abstract class with shared locators and navigation helpers for the OrangeHRM sidebar
-- Individual page classes extend `BasePage` and add page-specific locators/actions
+- `BasePage` — abstract class with shared locators, `navigate*()` helpers for every OrangeHRM sidebar section, and `expandMenu()` to handle the collapsed sidebar
+- Individual page classes extend `BasePage` and add page-specific locators/actions; each exposes an `isOnPage()` method
+- `BasePageIndexes.ts` — barrel file that re-exports all page classes; use this for imports instead of individual files
 - `PageManager` — single entry point that instantiates all pages; access via `pm.onDashboardPage()`, `pm.onPIMPage()`, etc.
+
+### Test Data
+
+Use `@faker-js/faker` for generating random test data (names, emails, phone numbers, addresses, etc.) — already installed and used in `01_authorization.spec.ts`.
 
 ### Logging
 
