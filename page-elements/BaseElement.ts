@@ -1,4 +1,5 @@
-import { Locator, Page } from "@playwright/test";
+import { Locator } from "@playwright/test";
+import { logger } from "../utils/logger";
 
 export abstract class BaseElement {
     protected constructor(protected locator: Locator, protected name: string) { }
@@ -7,7 +8,7 @@ export abstract class BaseElement {
         try {
             await this.locator.scrollIntoViewIfNeeded();
         } catch (error) {
-            console.error(`[FAILED] - Unable to scroll to ${this.name}`)
+            logger.error(`[FAILED] - Unable to scroll to ${this.name}`)
             throw error;
         }
     }
@@ -16,7 +17,7 @@ export abstract class BaseElement {
         try {
             return await this.locator.isVisible();
         } catch (error) {
-            console.error(`[FAILED] - ${this.name} is not visible`);
+            logger.error(`[FAILED] - ${this.name} is not visible`);
             return false;
         }
     }
@@ -25,7 +26,7 @@ export abstract class BaseElement {
         try {
             return await this.locator.isHidden();
         } catch (error) {
-            console.error(`[FAILED] - ${this.name} is not hidden`);
+            logger.error(`[FAILED] - ${this.name} is not hidden`);
             return false;
         }
     }
@@ -34,7 +35,7 @@ export abstract class BaseElement {
         try {
             return await this.locator.isEnabled();
         } catch (error) {
-            console.error(`[FAILED] - ${this.name} is not enabled`);
+            logger.error(`[FAILED] - ${this.name} is not enabled`);
             return false;
         }
     }
@@ -43,7 +44,7 @@ export abstract class BaseElement {
         try {
             await this.locator.waitFor({ state: 'visible' });
         } catch (error) {
-            console.error(`[FAILED] - ${this.name} is not visible`);
+            logger.error(`[FAILED] - ${this.name} is not visible`);
             throw error;
         }
     }
@@ -52,7 +53,7 @@ export abstract class BaseElement {
         try {
             await this.locator.waitFor({ state: 'hidden' });
         } catch (error) {
-            console.error(`[FAILED] - ${this.name} is not hidden`);
+            logger.error(`[FAILED] - ${this.name} is not hidden`);
             throw error;
         }
     }

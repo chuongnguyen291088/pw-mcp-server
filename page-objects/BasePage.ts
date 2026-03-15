@@ -3,11 +3,21 @@ import { Page, Locator, expect } from "@playwright/test"
 export abstract class BasePage {
     private readonly userDropdown: Locator;
     private readonly logoutButton: Locator;
+    protected pageHeading: Locator;
 
     protected constructor(protected readonly page: Page) {
         this.page = page
         this.userDropdown = this.page.locator('.oxd-userdropdown-tab');
         this.logoutButton = this.page.getByRole('menuitem', { name: 'Logout' });
+    }
+
+    async isOnPage(): Promise<boolean> {
+        try {
+            await this.pageHeading.waitFor({ state: 'visible' });
+        } catch (error) {
+            return false;
+        }
+        return await this.pageHeading.isVisible();
     }
 
     /**

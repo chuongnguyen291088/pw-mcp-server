@@ -1,7 +1,9 @@
 import { test } from '@playwright/test';
 import { PageManager } from '../page-objects/PageManager';
+import { properties } from '../properties.config';
 
-const authFilePath = '.auth/user.json'
+const authFilePath = '.auth/user.json';
+const testEnv = `@${properties.env}`;
 
 test.describe('OrangeHRM Tests', {
     annotation: [
@@ -22,9 +24,10 @@ test.describe('OrangeHRM Tests', {
      */
     test('should login successfully with valid credentials', {
         annotation: [
-            { type: 'Story', description: 'As an active user, I want to successfully sign in using a valid password' }
+            { type: 'Story Name', description: 'As an active user, I want to successfully sign in using a valid password' },
+            { type: 'Story ID', description: 'XXX-001' }
         ],
-        tag: ['@signin', '@ui', '@positive']
+        tag: [testEnv, '@TC-001']
     }, async ({ page }) => {
 
         await test.step('Given I am on the login page', async () => {
@@ -46,9 +49,10 @@ test.describe('OrangeHRM Tests', {
      */
     test('should show error with invalid credentials', {
         annotation: [
-            { type: 'Story', description: 'As a user, I should see an error when signing in with invalid credentials' }
+            { type: 'Story Name', description: 'As a user, I should see an error when signing in with invalid credentials' },
+            { type: 'Story ID', description: 'XXX-002' }
         ],
-        tag: ['@signin', '@ui', '@negative']
+        tag: [testEnv, '@TC-002']
     }, async () => {
 
         await test.step('Given I am on the login page', async () => {
@@ -69,9 +73,10 @@ test.describe('OrangeHRM Tests', {
      */
     test('should logout successfully', {
         annotation: [
-            { type: 'Story', description: 'As a logged-in user, I want to successfully logout' }
+            { type: 'Story Name', description: 'As a logged-in user, I want to successfully logout' },
+            { type: 'Story ID', description: 'XXX-001' }
         ],
-        tag: ['@signout', '@ui', '@positive']
+        tag: [testEnv, '@TC-003']
     }, async () => {
 
         await test.step('Given I am logged in', async () => {

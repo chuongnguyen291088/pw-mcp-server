@@ -9,6 +9,7 @@ const env = PROCESS_ENV || 'dev';
 logger.info('='.repeat(10) + `Starting tests on the ${env.toUpperCase()} environment` + '='.repeat(10));
 
 const properties = {
+    env: '',
     base_url: '',
     api_host: '',
     admin_username: '',
@@ -17,6 +18,7 @@ const properties = {
 
 switch (env.toUpperCase()) {
     case "QA":
+        properties.env = `${env.toUpperCase()} Environment`;
         properties.base_url = 'https://opensource-demo.orangehrmlive.com';
         properties.api_host = 'https://opensource-demo.orangehrmlive.com';
         properties.admin_username = process.env.QA_ADMIN_USERNAME;
@@ -24,6 +26,7 @@ switch (env.toUpperCase()) {
         break;
 
     case "PROD":
+        properties.env = `${env.toUpperCase()} Environment`;
         properties.base_url = 'https://opensource-demo.orangehrmlive.com';
         properties.api_host = 'https://opensource-demo.orangehrmlive.com';
         properties.admin_username = process.env.PROD_ADMIN_USERNAME;
@@ -31,6 +34,7 @@ switch (env.toUpperCase()) {
         break;
 
     default:
+        properties.env = `${env.toUpperCase()} Environment`;
         properties.base_url = 'https://opensource-demo.orangehrmlive.com';
         properties.api_host = 'https://opensource-demo.orangehrmlive.com';
         properties.admin_username = process.env.DEV_ADMIN_USERNAME;

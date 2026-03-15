@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx cross-env TEST_ENV=QA npx playwright test tests/01_authorization.spec.ts"
+    "test": "npx cross-env TEST_ENV=QA npx playwright test tests/01_authorization.spec.ts",
+    "talk-first-test": "npx playwright test tests/talk_first_register_class.ts"
   },
   "repository": {
     "type": "git",

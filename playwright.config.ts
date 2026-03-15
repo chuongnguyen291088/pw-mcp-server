@@ -10,7 +10,7 @@ export default defineConfig({
   outputDir: 'test-results',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 1 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: [
     ['list', { printSteps: true }],
@@ -43,15 +43,15 @@ export default defineConfig({
 
   projects: [
     {
-      name: 'authentication-setup',
+      name: 'Orange HRM Setup',
       testMatch: '**/authentication.setup.ts'
     },
 
     {
-      name: 'automation-playwright-mcp-server',
+      name: 'Orange HRM Execution',
       use: { browserName: 'chromium', storageState: path.join(__dirname, '.auth/auth.json') },
-      dependencies: ['authentication-setup'],
-      testMatch: '**/01**'
+      dependencies: ['Orange HRM Setup'],
+      testMatch: '**/01_**.spec.ts'
     },
 
     {
@@ -59,6 +59,21 @@ export default defineConfig({
       use: { browserName: 'chromium' },
       testMatch: '**/orangeHrm.spec.ts'
     },
+
+    {
+      name: 'Talk Fist Setup',
+      testMatch: '**/talk_first_authentication.setup.ts'
+    },
+
+    {
+      name: 'Talk First Execution',
+      use: {
+        browserName: 'chromium',
+        storageState: path.join(__dirname, '.auth/talkFirstAuth.json')
+      },
+      dependencies: ['Talk Fist Setup'],
+      testMatch: '**/talk_first_register_class.ts'
+    }
 
     // {
     //   name: 'firefox',

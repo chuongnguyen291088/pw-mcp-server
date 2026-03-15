@@ -1,10 +1,7 @@
 import { UserManagementController } from "../src/controllers/userManagementController";
 import { NewUserEntity } from "../src/entities/newUserEntity";
-import { ContactDetailsRequestDto } from "../src/requestDto/contactDetailsRequestDto";
-import { NewEmployeeRequestDto } from "../src/requestDto/newEmployeeRequestDto";
-import { NewUserRequestDto } from "../src/requestDto/newUserRequestDto";
+import { TestDataFactory } from "../helpers/TestDataFactory";
 import { test, expect } from "../test-options";
-import { faker } from "@faker-js/faker";
 
 test('verify pageManager fixture', async ({ pageManager }) => {
     let pm = pageManager
@@ -36,46 +33,16 @@ for (let i = 0; i < 2; i++) {
 
         let empNumber: number;
         await test.step('create new employee', async () => {
-            const createNewEmployeeRqDto: NewEmployeeRequestDto = {
-                empPicture: null,
-                employeeId: faker.string.numeric(8),
-                firstName: faker.person.firstName(),
-                lastName: faker.person.lastName(),
-                middleName: faker.person.middleName()
-            };
-
-            empNumber = await userManagementController.getEmpNumber(createNewEmployeeRqDto);
+            empNumber = await userManagementController.getEmpNumber(TestDataFactory.buildNewEmployeeDto());
         });
 
         let newUserEntity: NewUserEntity
         await test.step('create new user', async () => {
-            const createNewUserRqDto: NewUserRequestDto = {
-                username: `ndc.vn88+test${faker.string.numeric({ length: { min: 3, max: 10 } })}`,
-                password: 'Welcome@01',
-                status: true,
-                userRoleId: 1,
-                empNumber: empNumber
-            };
-
-            newUserEntity = await userManagementController.createNewUser(createNewUserRqDto);
+            newUserEntity = await userManagementController.createNewUser(TestDataFactory.buildNewUserDto(empNumber));
         });
 
         await test.step('update contact details', async () => {
-            const contactDetailsRqDto: ContactDetailsRequestDto = {
-                city: 'Saigon',
-                countryCode: 'VN',
-                homeTelephone: `849${faker.string.numeric(8)}`,
-                mobile: '84934352275',
-                otherEmail: faker.internet.email(),
-                province: faker.location.state(),
-                street1: faker.location.street(),
-                street2: faker.location.secondaryAddress(),
-                workEmail: `ndc.vn88+test${faker.string.numeric({ length: { min: 3, max: 10 } })}@outlook.com`,
-                workTelephone: `849${faker.string.numeric(8)}`,
-                zipCode: faker.location.zipCode()
-            };
-
-            await userManagementController.updateContactDetails(empNumber, contactDetailsRqDto);
+            await userManagementController.updateContactDetails(empNumber, TestDataFactory.buildContactDetailsDto());
         });
 
         await test.step('verify that the created user appears on the user list', async () => {
