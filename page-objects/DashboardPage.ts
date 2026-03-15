@@ -1,32 +1,14 @@
-import { Page, Locator, expect } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import { BasePage } from "./BasePage";
 
 export class DashboardPage extends BasePage {
-    // Page elements
-    private readonly pageLocator: Locator;
-
     constructor(page: Page) {
         super(page);
-        this.pageLocator = this.page.getByRole('heading', { name: 'Dashboard' });
+        this.pageHeading = this.page.getByRole('heading', { name: 'Dashboard' });
     }
 
-    /**
-     * Check if dashboard is displayed
-     */
-    async isOnPage(): Promise<boolean> {
-        try {
-            await this.pageLocator.waitFor({ state: 'visible' })
-        } catch (error) {
-            return false
-        }
-        return await this.pageLocator.isVisible();
-    }
-
-    /**
-     * Verify user is on dashboard page
-     */
     async verifyDashboardPage() {
         await this.verifyUrl('dashboard');
-        await expect(this.pageLocator).toBeVisible();
+        await expect(this.pageHeading).toBeVisible();
     }
 }

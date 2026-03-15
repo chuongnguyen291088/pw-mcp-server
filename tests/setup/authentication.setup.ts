@@ -7,9 +7,9 @@ import path from "path";
 
 const authFilePath = path.join(__dirname, '../../.auth/auth.json')
 
-setup('Orange HRM Authentication', async ({ browser }) => {
+setup('Orange HRM Setup', async ({ browser }) => {
     const context = await browser.newContext();
-    const request = await context.request;
+    const request = context.request;
     const apiLogger = new APILogger();
     const api = new RequestHandler(request, apiLogger);
 
