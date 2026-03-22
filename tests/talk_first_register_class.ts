@@ -4,14 +4,14 @@ const baseUrl = 'https://campus.talkfirst.vn';
 const registerClassPath = '/api/student/my-schedule/';
 const expectedStatusCode = 201;
 const mainClasses = {
-    "firstMainClassId": '019cea05-c315-7831-a9e8-8b41da705c39', //* 19:50 - Monday, 03/16/2026
-    "secondMainClassId": '019cea0c-78f5-70f1-b136-07f0e62a3843', //* 19:50 - Wednesday, 03/18/2026
-    "thirdMainClassId": '019cea0e-23a9-70cc-9bc8-039737f559a4', //* 19:50 - Thursday, 03/19/2026
+    "firstMainClassId": '019d0fdf-2daa-7701-ac6b-460bf99ccf26', //* 19:50 - Tuesday, 03/24/2026
+    "secondMainClassId": '019d0feb-68c5-7251-b97b-6a7ed2b79c53', //* 19:50 - Wednesday, 03/25/2026
+    "thirdMainClassId": '019d0fe2-179e-7b60-99d4-76e54b16b293', //* 19:50 - Thursday, 03/26/2026
 };
-const freeTalkClassId = '019ce9fe-7fd8-78ff-8c2a-f52b91415926'; //* 19:50 - Friday, 03/20/2026
+const freeTalkClassId = '019d0fc9-643c-7f6e-838d-504afc4d1fcb'; //* 19:50 - Saturday, 03/28/2026
 const skillClasses = {
-    "firstSkillClassId": '019cea74-5a11-72f0-af66-d861fab7b5f2', //* 13:30 - Saturday, 03/21/2026
-    "secondSkillClassId": '',
+    "firstSkillClassId": '019d1030-75e6-74c5-90e9-0bc0af1ff1c2', //* 13:30 - Saturday, 03/21/2026
+    "secondSkillClassId": '019d102b-230b-7f61-8e36-572868f1994a',
     "thirdSkillClassId": '',
 };
 
@@ -81,7 +81,7 @@ test.describe('Register Talk First English Class', () => {
             .POST(expectedStatusCode, { logRequestHeaders: true, logRequestBody: true, logResponseBody: true })
     });
 
-    test.skip('Register the 2nd skill class', async ({ api }) => {
+    test('Register the 2nd skill class', async ({ api }) => {
         await api
             .url(baseUrl)
             .path(registerClassPath)

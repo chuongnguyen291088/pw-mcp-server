@@ -13,7 +13,7 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: [
-    ['list', { printSteps: true }],
+    ['list', { printSteps: false }],
     ['html'],
     ['allure-playwright', {
       detail: true,

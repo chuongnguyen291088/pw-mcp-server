@@ -6,7 +6,7 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const PROCESS_ENV = process.env.TEST_ENV;
 const env = PROCESS_ENV || 'dev';
-logger.info('='.repeat(10) + `Starting tests on the ${env.toUpperCase()} environment` + '='.repeat(10));
+logger.info('='.repeat(10) + ` Starting tests on the [${env.toUpperCase()}] environment ` + '='.repeat(10));
 
 const properties = {
     env: '',
