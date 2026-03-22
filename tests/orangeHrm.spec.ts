@@ -35,7 +35,7 @@ test.describe('OrangeHRM Tests', {
         });
 
         await test.step('When I login with valid credentials', async () => {
-            await pm.onLoginPage().login(process.env.ADMIN_USER_NAME, process.env.ADMIN_PASSWORD);
+            await pm.onLoginPage().login(properties.admin_username, properties.admin_password);
             await page.context().storageState({ path: authFilePath })
         });
 

@@ -5,131 +5,70 @@ test.describe('Navigation', () => {
         await page.goto('/web/index.php/dashboard/index')
     });
 
-    test('verify that the dashboard page displays successfully', async ({ pageManager }) => {
-        await test.step('verify that the dashboard page displays', async () => {
-            const flag = await pageManager.onDashboardPage().isOnPage()
-            expect(flag).toBeTruthy()
-        })
+    test('verify that the dashboard page displays successfully', { tag: '@dashboard-page' }, async ({ pageManager }) => {
+        const flag = await pageManager.onDashboardPage().isOnPage()
+        expect(flag).toBeTruthy()
     });
 
-    test('verify that the admin page displays successfully', async ({ pageManager }) => {
-        await test.step('navigate to the admin page', async () => {
-            await pageManager.onAdminPage().navigateToAdminPage()
-        })
-
-        await test.step('verify that the admin page displays', async () => {
-            const flag = await pageManager.onAdminPage().isOnPage()
-            expect(flag).toBeTruthy()
-        })
+    test('verify that the admin page displays successfully', { tag: '@admin-page' }, async ({ pageManager }) => {
+        await pageManager.onAdminPage().navigateToAdminPage()
+        expect(await pageManager.onAdminPage().isOnPage()).toBeTruthy()
     });
 
-    test('verify that the pim page displays successfully', async ({ pageManager }) => {
-        await test.step('navigate to the pim page', async () => {
-            await pageManager.onDashboardPage().navigateToPIMPage()
-        })
-
-        await test.step('verify that the pim page displays', async () => {
-            const flag = await pageManager.onPIMPage().isOnPage()
-            expect(flag).toBeTruthy()
-        })
+    test('verify that the pim page displays successfully', { tag: '@pim-page' }, async ({ pageManager }) => {
+        await pageManager.onDashboardPage().navigateToPIMPage()
+        expect(await pageManager.onPIMPage().isOnPage()).toBeTruthy()
     });
 
-    test('verify that the leave page displays successfully', async ({ pageManager }) => {
-        await test.step('navigate to the leave page', async () => {
-            await pageManager.onDashboardPage().navigateToLeavePage()
-        })
-
-        await test.step('verify that the leave page displays', async () => {
-            const flag = await pageManager.onLeavePage().isOnPage()
-            expect(flag).toBeTruthy()
-        })
+    test('verify that the leave page displays successfully', { tag: '@leave-page' }, async ({ pageManager }) => {
+        await pageManager.onDashboardPage().navigateToLeavePage()
+        expect(await pageManager.onLeavePage().isOnPage()).toBeTruthy()
     });
 
-    test('verify that the time page displays successfully', async ({ pageManager }) => {
-        await test.step('navigate to the time page', async () => {
-            await pageManager.onDashboardPage().navigateToTimePage()
-        })
-
-        await test.step('verify that the time page displays', async () => {
-            const flag = await pageManager.onTimePage().isOnPage()
-            expect(flag).toBeTruthy()
-        })
+    test('verify that the time page displays successfully', { tag: '@time-page' }, async ({ pageManager }) => {
+        await pageManager.onDashboardPage().navigateToTimePage()
+        expect(await pageManager.onTimePage().isOnPage()).toBeTruthy()
     });
 
-    test('verify that the recruitment page displays successfully', async ({ pageManager }) => {
-        await test.step('navigate to the recruitment page', async () => {
-            await pageManager.onDashboardPage().navigateToRecruitmentPage()
-        })
-
-        await test.step('verify that the recruitment page displays', async () => {
-            const flag = await pageManager.onRecruitmentPage().isOnPage()
-            expect(flag).toBeTruthy()
-        })
+    test('verify that the recruitment page displays successfully', { tag: '@recruitment-page' }, async ({ pageManager }) => {
+        await pageManager.onDashboardPage().navigateToRecruitmentPage()
+        expect(await pageManager.onRecruitmentPage().isOnPage()).toBeTruthy()
     });
 
-    test('verify that the my info page displays successfully', async ({ pageManager }) => {
-        await test.step('navigate to the my info page', async () => {
-            await pageManager.onDashboardPage().navigateToMyInfoPage()
-        })
-
-        await test.step('verify that the my info page displays', async () => {
-            const flag = await pageManager.onMyInfoPage().isOnPage()
-            expect(flag).toBeTruthy()
-        })
+    test('verify that the my info page displays successfully', { tag: '@info-page' }, async ({ pageManager }) => {
+        await pageManager.onDashboardPage().navigateToMyInfoPage()
+        expect(await pageManager.onMyInfoPage().isOnPage()).toBeTruthy()
     });
 
-    test('verify that the performance page displays successfully', async ({ pageManager }) => {
-        await test.step('navigate to the performance page', async () => {
-            await pageManager.onDashboardPage().navigateToPerformancePage()
-        })
-
-        await test.step('verify that the performance page displays', async () => {
-            const flag = await pageManager.onPerformancePage().isOnPage()
-            expect(flag).toBeTruthy()
-        })
+    test('verify that the performance page displays successfully', { tag: '@performance-page' }, async ({ pageManager }) => {
+        await pageManager.onDashboardPage().navigateToPerformancePage()
+        expect(await pageManager.onPerformancePage().isOnPage()).toBeTruthy()
     });
 
-    test('verify that the directory page displays successfully', async ({ pageManager }) => {
-        await test.step('navigate to the directory page', async () => {
-            await pageManager.onDashboardPage().navigateToDirectoryPage()
-        })
-
-        await test.step('verify that the directory page displays', async () => {
-            const flag = await pageManager.onDirectoryPage().isOnPage()
-            expect(flag).toBeTruthy()
-        })
+    test('verify that the directory page displays successfully', { tag: '@directory-page' }, async ({ pageManager }) => {
+        await pageManager.onDashboardPage().navigateToDirectoryPage()
+        expect(await pageManager.onDirectoryPage().isOnPage()).toBeTruthy()
     });
 
-    test('verify that the maintenance page displays successfully', async ({ pageManager }) => {
-        await test.step('navigate to the maintenance page', async () => {
-            await pageManager.onDashboardPage().navigateToMaintenancePage()
-        })
-
-        await test.step('verify that the maintenance page displays', async () => {
-            const flag = await pageManager.onMaintenancePage().isOnPage()
-            expect(flag).toBeTruthy()
-        })
+    test('verify that the maintenance page displays successfully', { tag: '@maintenance-page' }, async ({ pageManager }) => {
+        await pageManager.onDashboardPage().navigateToMaintenancePage()
+        expect(await pageManager.onMaintenancePage().isOnPage()).toBeTruthy()
     });
 
-    test('verify that the claim page displays successfully', async ({ pageManager }) => {
-        await test.step('navigate to the claim page', async () => {
-            await pageManager.onDashboardPage().navigateToClaimPage()
-        })
-
-        await test.step('verify that the claim page displays', async () => {
-            const flag = await pageManager.onClaimPage().isOnPage()
-            expect(flag).toBeTruthy()
-        })
+    test('verify that the claim page displays successfully', { tag: '@claim-page' }, async ({ pageManager }) => {
+        await pageManager.onDashboardPage().navigateToClaimPage()
+        expect(await pageManager.onClaimPage().isOnPage()).toBeTruthy()
     });
 
-    test('verify that the buzz page displays successfully', async ({ pageManager }) => {
-        await test.step('navigate to the buzz page', async () => {
-            await pageManager.onDashboardPage().navigateToBuzzPage()
-        })
-
-        await test.step('verify that the buzz page displays', async () => {
-            const flag = await pageManager.onBuzzPage().isOnPage()
-            expect(flag).toBeTruthy()
-        })
+    test('verify that the buzz page displays successfully', { tag: '@buzz-page' }, async ({ pageManager }) => {
+        await pageManager.onDashboardPage().navigateToBuzzPage()
+        expect(await pageManager.onBuzzPage().isOnPage()).toBeTruthy()
     });
-});
+})
+
+
+
+
+
+
+

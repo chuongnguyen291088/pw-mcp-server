@@ -1,5 +1,6 @@
 import { Page, Locator, expect } from "@playwright/test";
 import { BasePage } from "./BasePage";
+import { step } from "../test-options";
 
 export class LoginPage extends BasePage {
     // Page elements
@@ -8,8 +9,8 @@ export class LoginPage extends BasePage {
     private readonly loginButton: Locator;
     private readonly errorMessage: Locator;
 
-    constructor(page: Page) {
-        super(page);
+    constructor(page: Page, name = 'Login Page') {
+        super(page, name);
         this.usernameInput = this.page.getByPlaceholder('Username');
         this.passwordInput = this.page.getByPlaceholder('Password');
         this.loginButton = this.page.getByRole('button', { name: /login/i });
