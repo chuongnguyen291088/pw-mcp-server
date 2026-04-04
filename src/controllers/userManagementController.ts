@@ -5,8 +5,10 @@ import { POST_new_user } from "@api/POST_new_user";
 import { PUT_contact_details } from "@api/PUT_contact_details";
 import { BaseEntities } from "../baseEntities";
 import { NewEmployeeEntity } from "@entities/newEmployeeEntity";
-import { UserListEntity } from "@entities/userListEntity";
+import { z } from "zod";
+import { UserListResponseSchema } from "@entities/schemas/responses/UserList.schema";
 
+type UserListResponse = z.infer<typeof UserListResponseSchema>;
 export class UserManagementController extends BaseEntities {
     constructor(api: RequestHandler) {
         super(api);
@@ -39,7 +41,8 @@ export class UserManagementController extends BaseEntities {
     async getUserNameList(): Promise<string[]> {
         const getUserList = new GET_users(this.api);
         const res = await getUserList.send();
-        const userListEntity: UserListEntity = await res.json();
-        return userListEntity?.data?.map(user => user.userName);
+        const userList: UserListResponse = UserListResponseSchema.parse(await res.json())
+        // const userListEntity: UserListEntity = await res.json();
+        return userList.data.map(user => user.userName);
     }
 }

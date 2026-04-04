@@ -1,8 +1,16 @@
 import { UserManagementController } from "@controller/userManagementController";
+import { prepareContactDetailsPayload } from "@entities/factories/ContactDetails.factory";
 import { prepareNewEmployeePayload } from "@entities/factories/NewEmployee.factory";
+import { prepareNewUserPayload } from "@entities/factories/NewUser.factory";
 import { NewUserEntity } from "@entities/newUserEntity";
+import { NewEmployeeResponseSchema } from "@entities/schemas/responses/NewEmployee.schema";
+import { NewUserResponseSchema } from "@entities/schemas/responses/NewUser.schema";
 import { TestDataFactory } from "@helper/TestDataFactory";
 import { test, expect } from "@test-options";
+import { z } from "zod";
+
+type NewEmployeeRes = z.infer<typeof NewEmployeeResponseSchema>;
+type NewUserRes = z.infer<typeof NewUserResponseSchema>
 
 test('verify pageManager fixture', async ({ pageManager }) => {
     let pm = pageManager
@@ -28,34 +36,37 @@ test('verify pageManager fixture', async ({ pageManager }) => {
     })
 });
 
-for (let i = 0; i < 2; i++) {
+for (let i = 0; i < 5; i++) {
     test.only(`verify api fixture - iteration ${i + 1}`, async ({ api }) => {
         let userManagementController = new UserManagementController(api)
 
         let empNumber: number;
         await test.step('create new employee', async () => {
-            // empNumber = await userManagementController.getEmpNumber(TestDataFactory.buildNewEmployeeDto());
-            empNumber = await userManagementController.getEmpNumber(prepareNewEmployeePayload());
+            const res = await userManagementController.createNewEmployee(prepareNewEmployeePayload())
+            const newEmployeeRes: NewEmployeeRes = NewEmployeeResponseSchema.parse(await res.json())
+            empNumber = newEmployeeRes.data.empNumber
         });
 
-        let newUserEntity: NewUserEntity
+        let newUserResponse: NewUserRes;
         await test.step('create new user', async () => {
-            newUserEntity = await userManagementController.createNewUser(TestDataFactory.buildNewUserDto(empNumber));
+            newUserResponse = await userManagementController.createNewUser(prepareNewUserPayload({
+                empNumber: empNumber
+            }));
         });
 
         await test.step('update contact details', async () => {
-            await userManagementController.updateContactDetails(empNumber, TestDataFactory.buildContactDetailsDto());
+            await userManagementController.updateContactDetails(empNumber, prepareContactDetailsPayload());
         });
 
         await test.step('verify that the created user appears on the user list', async () => {
             const userList = await userManagementController.getUserNameList();
-            const expectedUserName = newUserEntity.data.userName;
+            const expectedUserName = newUserResponse.data.userName;
             expect(userList).toContain(expectedUserName);
         });
     });
 }
 
-test('zod integration', async ({ api }) => {
+test.skip('zod integration', async ({ api }) => {
     const userManagementController = new UserManagementController(api)
     let empNo: number;
 

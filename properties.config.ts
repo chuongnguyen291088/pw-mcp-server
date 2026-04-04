@@ -21,24 +21,24 @@ switch (env.toUpperCase()) {
         properties.env = `${env.toUpperCase()} Environment`;
         properties.base_url = 'https://opensource-demo.orangehrmlive.com';
         properties.api_host = 'https://opensource-demo.orangehrmlive.com';
-        properties.admin_username = process.env.QA_ADMIN_USERNAME;
-        properties.admin_password = process.env.QA_ADMIN_PASSWORD;
+        properties.admin_username = process.env.QA_ADMIN_USERNAME ?? "";
+        properties.admin_password = process.env.QA_ADMIN_PASSWORD ?? "";
         break;
 
     case "PROD":
         properties.env = `${env.toUpperCase()} Environment`;
         properties.base_url = 'https://opensource-demo.orangehrmlive.com';
         properties.api_host = 'https://opensource-demo.orangehrmlive.com';
-        properties.admin_username = process.env.PROD_ADMIN_USERNAME;
-        properties.admin_password = process.env.PROD_ADMIN_PASSWORD;
+        properties.admin_username = process.env.PROD_ADMIN_USERNAME ?? "";
+        properties.admin_password = process.env.PROD_ADMIN_PASSWORD ?? "";
         break;
 
     default:
         properties.env = `${env.toUpperCase()} Environment`;
         properties.base_url = 'https://opensource-demo.orangehrmlive.com';
         properties.api_host = 'https://opensource-demo.orangehrmlive.com';
-        properties.admin_username = process.env.DEV_ADMIN_USERNAME;
-        properties.admin_password = process.env.DEV_ADMIN_PASSWORD;
+        properties.admin_username = process.env.DEV_ADMIN_USERNAME ?? "";
+        properties.admin_password = process.env.DEV_ADMIN_PASSWORD ?? "";
         break;
 }
 

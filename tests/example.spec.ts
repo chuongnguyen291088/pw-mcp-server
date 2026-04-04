@@ -7,7 +7,11 @@ test.skip('API check', async ({ request }) => {
   const matcher = htmlSourceText.match(/:token="&quot;(.+?)&quot;"/)
   const csrfToken = matcher ? matcher[1] : null
   console.log(' 📋 CSRF Token:', csrfToken)
-  process.env['CSRF_TOKEN'] = csrfToken
+  if (csrfToken) {
+    process.env['CSRF_TOKEN'] = csrfToken
+  } else {
+    throw new Error(`CSRF_TOKEN is NOT available`)
+  }
 
   const validateResponse = await request.post('/web/index.php/auth/validate',
     {
@@ -16,8 +20,8 @@ test.skip('API check', async ({ request }) => {
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'
       },
       form: {
-        username: process.env.ADMIN_USER_NAME,
-        password: process.env.ADMIN_PASSWORD,
+        username: process.env.ADMIN_USER_NAME ?? "",
+        password: process.env.ADMIN_PASSWORD ?? "",
         _token: csrfToken
       }
     }

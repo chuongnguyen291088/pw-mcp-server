@@ -1,8 +1,8 @@
-import { NewEmployeeSchema } from "@entities/schemas/requests/NewEmployee.schema";
+import { NewEmployeeRequestSchema } from "@entities/schemas/requests/NewEmployee.schema";
 import { faker } from "@faker-js/faker";
 import { z } from "zod";
 
-type NewEmployeePayload = z.infer<typeof NewEmployeeSchema>;
+type NewEmployeePayload = z.infer<typeof NewEmployeeRequestSchema>;
 
 // export function prepareNewEmployeePayload(overrides?: Partial<NewEmployeePayload>): NewEmployeePayload {
 
@@ -22,5 +22,5 @@ export const prepareNewEmployeePayload = (overrides?: Partial<NewEmployeePayload
         employeeId: faker.string.numeric({ length: { min: 4, max: 8 } })
     };
 
-    return NewEmployeeSchema.parse({ ...defaultData, ...overrides });
+    return NewEmployeeRequestSchema.parse({ ...defaultData, ...overrides });
 }
