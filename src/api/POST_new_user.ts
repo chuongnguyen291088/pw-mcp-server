@@ -1,4 +1,4 @@
-import { RequestHandler } from "../../utils/requestHandler";
+import { RequestHandler } from "../utils/requestHandler";
 import { BaseEntities } from "../baseEntities";
 import { NewUserRequestDto } from "../requestDto/newUserRequestDto";
 
@@ -7,7 +7,7 @@ export class POST_new_user extends BaseEntities {
         super(api)
     }
 
-    async send(rq: NewUserRequestDto) {
+    async send(rq: Record<string, any>) {
         return await this.api
             .path('/web/index.php/api/v2/admin/users')
             .body(rq)

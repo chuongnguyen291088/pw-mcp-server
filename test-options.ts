@@ -1,7 +1,7 @@
 import { test as base } from "@playwright/test";
-import { RequestHandler } from "./utils/requestHandler";
-import { APILogger } from "./utils/apiLogger";
-import { PageManager } from "./page-objects/PageManager";
+import { RequestHandler } from "@utils/requestHandler";
+import { APILogger } from "@utils/apiLogger";
+import { PageManager } from "@page-object/PageManager";
 
 export type TestOptions = {
     api: RequestHandler,
@@ -30,4 +30,3 @@ export const test = base.extend<TestOptions>({
 })
 
 export { expect } from "@playwright/test"
-export { step } from "./utils/step"

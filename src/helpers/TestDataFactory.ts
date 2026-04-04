@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
-import { ContactDetailsRequestDto } from '../src/requestDto/contactDetailsRequestDto';
-import { NewEmployeeRequestDto } from '../src/requestDto/newEmployeeRequestDto';
-import { NewUserRequestDto } from '../src/requestDto/newUserRequestDto';
+import { ContactDetailsRequestDto } from '../requestDto/contactDetailsRequestDto';
+import { NewEmployeeRequestDto } from '../requestDto/newEmployeeRequestDto';
+import { NewUserRequestDto } from '../requestDto/newUserRequestDto';
 
 export class TestDataFactory {
 

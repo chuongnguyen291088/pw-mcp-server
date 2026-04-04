@@ -1,7 +1,8 @@
-import { UserManagementController } from "../src/controllers/userManagementController";
-import { NewUserEntity } from "../src/entities/newUserEntity";
-import { TestDataFactory } from "../helpers/TestDataFactory";
-import { test, expect } from "../test-options";
+import { UserManagementController } from "@controller/userManagementController";
+import { prepareNewEmployeePayload } from "@entities/factories/NewEmployee.factory";
+import { NewUserEntity } from "@entities/newUserEntity";
+import { TestDataFactory } from "@helper/TestDataFactory";
+import { test, expect } from "@test-options";
 
 test('verify pageManager fixture', async ({ pageManager }) => {
     let pm = pageManager
@@ -28,12 +29,13 @@ test('verify pageManager fixture', async ({ pageManager }) => {
 });
 
 for (let i = 0; i < 2; i++) {
-    test(`verify api fixture - iteration ${i + 1}`, async ({ api }) => {
+    test.only(`verify api fixture - iteration ${i + 1}`, async ({ api }) => {
         let userManagementController = new UserManagementController(api)
 
         let empNumber: number;
         await test.step('create new employee', async () => {
-            empNumber = await userManagementController.getEmpNumber(TestDataFactory.buildNewEmployeeDto());
+            // empNumber = await userManagementController.getEmpNumber(TestDataFactory.buildNewEmployeeDto());
+            empNumber = await userManagementController.getEmpNumber(prepareNewEmployeePayload());
         });
 
         let newUserEntity: NewUserEntity
@@ -52,3 +54,13 @@ for (let i = 0; i < 2; i++) {
         });
     });
 }
+
+test('zod integration', async ({ api }) => {
+    const userManagementController = new UserManagementController(api)
+    let empNo: number;
+
+    await test.step('create new employee', async () => {
+        const payload = prepareNewEmployeePayload();
+        empNo = await userManagementController.getEmpNumber(payload);
+    });
+});

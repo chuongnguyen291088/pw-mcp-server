@@ -1,4 +1,4 @@
-import { RequestHandler } from "../../utils/requestHandler";
+import { RequestHandler } from "../utils/requestHandler";
 import { BaseEntities } from "../baseEntities";
 
 export class GET_users extends BaseEntities {

@@ -1,7 +1,7 @@
 import { test as setup } from "@playwright/test";
-import { RequestHandler } from "../../utils/requestHandler";
-import { APILogger } from "../../utils/apiLogger";
-import { logger } from "../../utils/logger";
+import { RequestHandler } from "@utils/requestHandler";
+import { APILogger } from "@utils/apiLogger";
+import { logger } from "@utils/logger";
 import path from "path";
 
 const authFilePath = path.join(__dirname, '../../.auth/talkFirstAuth.json')

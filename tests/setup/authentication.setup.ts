@@ -1,8 +1,8 @@
 import { test as setup } from "@playwright/test";
-import { RequestHandler } from "../../utils/requestHandler";
-import { APILogger } from "../../utils/apiLogger";
-import { logger } from "../../utils/logger";
-import { properties } from "../../properties.config";
+import { RequestHandler } from "@utils/requestHandler";
+import { APILogger } from "@utils/apiLogger";
+import { logger } from "@utils/logger";
+import { properties } from "@properties-config";
 import path from "path";
 
 const authFilePath = path.join(__dirname, '../../.auth/auth.json')

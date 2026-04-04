@@ -6,9 +6,44 @@
     "importHelpers": true,
     "module": "es2020",
     "outDir": "./dist/out-tsc",
+    "paths": {
+      "@properties-config": [
+        "./properties.config.ts"
+      ],
+      "@test-options": [
+        "./test-options.ts"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@page-object/*": [
+        "./src/ui/page-objects/*"
+      ],
+      "@page-element/*": [
+        "./src/ui/page-elements/*"
+      ],
+      "@api/*": [
+        "./src/api/*"
+      ],
+      "@controller/*": [
+        "./src/controllers/*"
+      ],
+      "@helper/*": [
+        "./src/helpers/*"
+      ],
+      "@entities/*": [
+        "./src/entities/*"
+      ],
+      "@schemas/*": [
+        "./src/entities/schemas/*"
+      ],
+      "@factories/*": [
+        "./src/entities/factories/*"
+      ],
+    },
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "target": "es2020",
     "typeRoots": [
       "node_modules/@types"

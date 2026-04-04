@@ -1,4 +1,4 @@
-import { test, expect } from "../test-options";
+import { test } from "@test-options";
 
 const baseUrl = 'https://campus.talkfirst.vn';
 const registerClassPath = '/api/student/my-schedule/';

@@ -17,26 +17,26 @@ export class APILogger {
 
     logRequest(method: string, url: string, headers: Record<string, string>, body?: any, options: LogOptions = {}) {
         const { logHeaders = true, logBody = true } = options;
-        const logData = { method, url, headers: logHeaders ? headers : '🔐🔐🔐', body: logBody ? body : '🔐🔐🔐' };
+        const logData = { method, url, headers: logHeaders ? headers : '🔐', body: logBody ? body : '🔐' };
         this.addLog('Request', logData);
 
         logger.info({
             METHOD: method,
             URL: url,
-            HEADERS: logHeaders ? headers : '🔐🔐🔐',
-            BODY: logBody ? body : '🔐🔐🔐'
-        }, '🔼🔼🔼 Request Details 🔼🔼🔼');
+            HEADERS: logHeaders ? headers : '🔐',
+            BODY: logBody ? body : '🔐'
+        }, '🔼 Send Request 🔼');
     }
 
     logResponse(statusCode: number, body?: any, options: LogOptions = {}) {
         const { logBody = true } = options;
-        const logData = { statusCode, body: logBody ? body : '🔐🔐🔐' };
+        const logData = { statusCode, body: logBody ? body : '🔐' };
         this.addLog('Response', logData);
 
         logger.info({
             STATUS_CODE: statusCode,
-            BODY: logBody ? body : '🔐🔐🔐'
-        }, '🔽🔽🔽 Response Details 🔽🔽🔽');
+            BODY: logBody ? body : '🔐'
+        }, '🔽 Get Response 🔽');
     }
 
     getRecentLogs(): string {

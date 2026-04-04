@@ -1,5 +1,5 @@
 import { Locator } from "@playwright/test";
-import { logger } from "../utils/logger";
+import { logger } from "../../utils/logger";
 
 export abstract class BaseElement {
     protected constructor(protected locator: Locator, protected name: string) { }

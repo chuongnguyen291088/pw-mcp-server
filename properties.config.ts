@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import path from 'path';
-import { logger } from "./utils/logger";
+import { logger } from "./src/utils/logger";
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 

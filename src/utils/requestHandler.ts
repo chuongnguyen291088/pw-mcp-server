@@ -1,6 +1,6 @@
 import { test, APIRequestContext } from "@playwright/test";
 import { APILogger } from "./apiLogger";
-import { properties } from "../properties.config";
+import { properties } from "../../properties.config";
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
