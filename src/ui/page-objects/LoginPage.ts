@@ -1,6 +1,6 @@
 import { Page, Locator, expect } from "@playwright/test";
 import { BasePage } from "./BasePage";
-import { step } from "../test-options";
+import { step } from "../../../test-options";
 
 export class LoginPage extends BasePage {
     // Page elements

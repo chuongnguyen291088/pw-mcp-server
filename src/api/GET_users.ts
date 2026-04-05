@@ -1,4 +1,4 @@
-import { RequestHandler } from "../../utils/requestHandler";
+import { RequestHandler } from "../utils/requestHandler";
 import { BaseEntities } from "../baseEntities";
 
 export class GET_users extends BaseEntities {
@@ -15,6 +15,6 @@ export class GET_users extends BaseEntities {
                 "sortField": "u.userName",
                 "sortOrder": "ASC"
             })
-            .GET(200)
+            .GET(200, { logRequestBody: false, logResponseBody: false })
     }
 }

@@ -1,4 +1,4 @@
-import { RequestHandler } from "../../utils/requestHandler";
+import { RequestHandler } from "../utils/requestHandler";
 import { BaseEntities } from "../baseEntities";
 import { NewEmployeeRequestDto } from "../requestDto/newEmployeeRequestDto";
 
@@ -7,10 +7,10 @@ export class POST_new_employee extends BaseEntities {
         super(api);
     }
 
-    async send(rq: NewEmployeeRequestDto) {
+    async send(rq: Record<string, any>) {
         return await this.api
             .path('/web/index.php/api/v2/pim/employees')
             .body(rq)
-            .POST(200)
+            .POST(200, { logRequestBody: false, logResponseBody: false })
     };
 }
