@@ -78,20 +78,20 @@ export default defineConfig({
       testMatch: '**/*.e2e.spec.ts'
     },
 
-    {
-      name: 'Talk Fist Setup',
-      testMatch: '**/setup/talk_first_authentication.setup.ts'
-    },
+    // {
+    //   name: 'Talk Fist Setup',
+    //   testMatch: '**/setup/talk_first_authentication.setup.ts'
+    // },
 
-    {
-      name: 'Talk First Execution',
-      use: {
-        browserName: 'chromium',
-        storageState: path.join(__dirname, '.auth/talkFirstAuth.json')
-      },
-      dependencies: ['Talk Fist Setup'],
-      testMatch: '**/sandbox/talk_first_register_class.spec.ts'
-    }
+    // {
+    //   name: 'Talk First Execution',
+    //   use: {
+    //     browserName: 'chromium',
+    //     storageState: path.join(__dirname, '.auth/talkFirstAuth.json')
+    //   },
+    //   dependencies: ['Talk Fist Setup'],
+    //   testMatch: '**/sandbox/talk_first_register_class.spec.ts'
+    // },
 
     // {
     //   name: 'firefox',
