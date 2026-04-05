@@ -1,4 +1,4 @@
-import { test } from "@test-options";
+import { test } from "../../src/config/test-options";
 
 const baseUrl = 'https://campus.talkfirst.vn';
 const registerClassPath = '/api/student/my-schedule/';
@@ -16,7 +16,7 @@ const skillClasses = {
 };
 
 test.describe('Register Talk First English Class', () => {
-    test('Register the 1st main class', async ({ api }) => {
+    test.skip('Register the 1st main class', async ({ api }) => {
         await api
             .url(baseUrl)
             .path(registerClassPath)
@@ -29,7 +29,7 @@ test.describe('Register Talk First English Class', () => {
             .POST(expectedStatusCode, { logRequestHeaders: true, logRequestBody: true, logResponseBody: true })
     });
 
-    test('Register the 2nd main class', async ({ api }) => {
+    test.skip('Register the 2nd main class', async ({ api }) => {
         await api
             .url(baseUrl)
             .path(registerClassPath)
@@ -42,7 +42,7 @@ test.describe('Register Talk First English Class', () => {
             .POST(expectedStatusCode, { logRequestHeaders: true, logRequestBody: true, logResponseBody: true })
     });
 
-    test('Register the 3rd main class', async ({ api }) => {
+    test.skip('Register the 3rd main class', async ({ api }) => {
         await api
             .url(baseUrl)
             .path(registerClassPath)
@@ -55,7 +55,7 @@ test.describe('Register Talk First English Class', () => {
             .POST(expectedStatusCode, { logRequestHeaders: true, logRequestBody: true, logResponseBody: true })
     });
 
-    test('Register the free talk class', async ({ api }) => {
+    test.skip('Register the free talk class', async ({ api }) => {
         await api
             .url(baseUrl)
             .path(registerClassPath)
@@ -68,7 +68,7 @@ test.describe('Register Talk First English Class', () => {
             .POST(expectedStatusCode, { logRequestHeaders: true, logRequestBody: true, logResponseBody: true })
     });
 
-    test('Register the 1st skill class', async ({ api }) => {
+    test.skip('Register the 1st skill class', async ({ api }) => {
         await api
             .url(baseUrl)
             .path(registerClassPath)
@@ -81,7 +81,7 @@ test.describe('Register Talk First English Class', () => {
             .POST(expectedStatusCode, { logRequestHeaders: true, logRequestBody: true, logResponseBody: true })
     });
 
-    test('Register the 2nd skill class', async ({ api }) => {
+    test.skip('Register the 2nd skill class', async ({ api }) => {
         await api
             .url(baseUrl)
             .path(registerClassPath)

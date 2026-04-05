@@ -1,6 +1,6 @@
-import { RequestHandler } from "@utils/requestHandler";
+import { RequestHandler, RequestOptions } from "@api/base/RequestHandler";
 
-export abstract class BaseEntities {
+export abstract class BaseApi {
     protected readonly api: RequestHandler;
 
     constructor(api: RequestHandler) {

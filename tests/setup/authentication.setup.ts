@@ -1,8 +1,8 @@
 import { test as setup } from "@playwright/test";
-import { RequestHandler } from "@utils/requestHandler";
-import { APILogger } from "@utils/apiLogger";
+import { RequestHandler } from "@api/base/RequestHandler";
+import { ApiLogger } from "@utils/ApiLogger";
 import { logger } from "@utils/logger";
-import { properties } from "@properties-config";
+import { properties } from "../../src/config/properties.config";
 import path from "path";
 
 const authFilePath = path.join(__dirname, '../../.auth/auth.json')
@@ -10,7 +10,7 @@ const authFilePath = path.join(__dirname, '../../.auth/auth.json')
 setup('Orange HRM Setup', async ({ browser }) => {
     const context = await browser.newContext();
     const request = context.request;
-    const apiLogger = new APILogger();
+    const apiLogger = new ApiLogger();
     const api = new RequestHandler(request, apiLogger);
 
     try {

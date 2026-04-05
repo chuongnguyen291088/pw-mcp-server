@@ -13,7 +13,7 @@ import {
     MaintenancePage,
     ClaimPage,
     BuzzPage
-} from "./BasePageIndexes";
+} from "./index";
 
 export class PageManager {
     private readonly loginPage: LoginPage

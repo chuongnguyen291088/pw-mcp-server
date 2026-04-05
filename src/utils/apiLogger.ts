@@ -11,7 +11,7 @@ interface LogOptions {
     logBody?: boolean;
 }
 
-export class APILogger {
+export class ApiLogger {
     private logs: LogEntry[] = [];
     private maxLogsSize: number = 50;
 

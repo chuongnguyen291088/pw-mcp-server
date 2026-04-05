@@ -1,4 +1,4 @@
-import { test, expect } from '@test-options';
+import { test, expect } from '../../src/config/test-options';
 
 test.describe('Navigation', () => {
     test.beforeEach(async ({ page }) => {

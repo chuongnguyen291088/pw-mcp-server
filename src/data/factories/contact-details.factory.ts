@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { faker } from "@faker-js/faker";
-import { ContactDetailsRequestSchema } from "@entities/schemas/requests/ContactDetails.schema";
+import { ContactDetailsRequestSchema } from "@schemas/requests/ContactDetails.schema";
 
 type ContactDetailsPayload = z.infer<typeof ContactDetailsRequestSchema>
 

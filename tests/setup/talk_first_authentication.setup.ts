@@ -1,6 +1,6 @@
 import { test as setup } from "@playwright/test";
-import { RequestHandler } from "@utils/requestHandler";
-import { APILogger } from "@utils/apiLogger";
+import { RequestHandler } from "@api/base/RequestHandler";
+import { ApiLogger } from "@utils/ApiLogger";
 import { logger } from "@utils/logger";
 import path from "path";
 
@@ -9,7 +9,7 @@ const authFilePath = path.join(__dirname, '../../.auth/talkFirstAuth.json')
 setup('Talk First Setup', async ({ browser }) => {
     const context = await browser.newContext();
     const request = context.request;
-    const apiLogger = new APILogger();
+    const apiLogger = new ApiLogger();
     const api = new RequestHandler(request, apiLogger);
 
     try {

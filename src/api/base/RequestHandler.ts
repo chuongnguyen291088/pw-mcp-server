@@ -1,10 +1,10 @@
 import { test, APIRequestContext } from "@playwright/test";
-import { APILogger } from "./apiLogger";
-import { properties } from "../../properties.config";
+import { ApiLogger } from "@utils/ApiLogger";
+import { properties } from "@config/properties.config";
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
-interface RequestOptions {
+export interface RequestOptions {
     logRequestHeaders?: boolean;
     logRequestBody?: boolean;
     logResponseBody?: boolean;
@@ -12,7 +12,7 @@ interface RequestOptions {
 
 export class RequestHandler {
     private request: APIRequestContext;
-    private logger: APILogger;
+    private logger: ApiLogger;
     private baseURL?: string;
     private defaultBaseURL: string = properties.api_host ?? '';
     private apiPath: string = '';
@@ -20,7 +20,7 @@ export class RequestHandler {
     private apiHeaders: Record<string, string> = {};
     private apiBody: object = {};
 
-    constructor(request: APIRequestContext, logger: APILogger) {
+    constructor(request: APIRequestContext, logger: ApiLogger) {
         this.request = request;
         this.logger = logger;
     }
