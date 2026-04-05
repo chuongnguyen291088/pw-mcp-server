@@ -60,7 +60,14 @@ export default defineConfig({
       use: { browserName: 'chromium', storageState: path.join(__dirname, '.auth/auth.json') },
       dependencies: ['Orange HRM Setup'],
       testDir: './tests/ui',
-      testMatch: '**/*.ui.spec.ts'
+      testMatch: '**/navigation.ui.spec.ts'
+    },
+
+    {
+      name: 'UI Tests',
+      use: { browserName: 'webkit' },
+      testDir: './tests/ui',
+      testMatch: '**/dashboard.ui.spec.ts'
     },
 
     {

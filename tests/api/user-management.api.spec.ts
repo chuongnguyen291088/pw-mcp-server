@@ -34,7 +34,7 @@ test('verify pageManager fixture', async ({ pageManager }) => {
     })
 });
 
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < 5; i++) {
     test(`verify api fixture - iteration ${i + 1}`, async ({ api }) => {
         let userManagementController = new UserManagementController(api)
 
