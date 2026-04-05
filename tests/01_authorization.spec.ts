@@ -2,10 +2,8 @@ import { UserManagementController } from "@controller/userManagementController";
 import { prepareContactDetailsPayload } from "@entities/factories/ContactDetails.factory";
 import { prepareNewEmployeePayload } from "@entities/factories/NewEmployee.factory";
 import { prepareNewUserPayload } from "@entities/factories/NewUser.factory";
-import { NewUserEntity } from "@entities/newUserEntity";
 import { NewEmployeeResponseSchema } from "@entities/schemas/responses/NewEmployee.schema";
 import { NewUserResponseSchema } from "@entities/schemas/responses/NewUser.schema";
-import { TestDataFactory } from "@helper/TestDataFactory";
 import { test, expect } from "@test-options";
 import { z } from "zod";
 

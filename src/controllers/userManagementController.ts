@@ -4,11 +4,12 @@ import { POST_new_employee } from "@api/POST_new_employee";
 import { POST_new_user } from "@api/POST_new_user";
 import { PUT_contact_details } from "@api/PUT_contact_details";
 import { BaseEntities } from "../baseEntities";
-import { NewEmployeeEntity } from "@entities/newEmployeeEntity";
 import { z } from "zod";
 import { UserListResponseSchema } from "@entities/schemas/responses/UserList.schema";
+import { NewEmployeeResponseSchema } from "@entities/schemas/responses/NewEmployee.schema";
 
 type UserListResponse = z.infer<typeof UserListResponseSchema>;
+type NewEmployeeResponse = z.infer<typeof NewEmployeeResponseSchema>
 export class UserManagementController extends BaseEntities {
     constructor(api: RequestHandler) {
         super(api);
@@ -21,8 +22,8 @@ export class UserManagementController extends BaseEntities {
 
     async getEmpNumber(rq: Record<string, any>): Promise<number> {
         const res = await this.createNewEmployee(rq);
-        const newEmployeeEntity: NewEmployeeEntity = await res.json();
-        return newEmployeeEntity.data.empNumber;
+        const newEmployeeRes: NewEmployeeResponse = await res.json();
+        return newEmployeeRes.data.empNumber;
     };
 
 
