@@ -7,39 +7,39 @@
     "module": "es2020",
     "outDir": "./dist/out-tsc",
     "paths": {
-      "@properties-config": [
-        "./properties.config.ts"
-      ],
       "@test-options": [
-        "./test-options.ts"
+        "./src/config/test-options.ts"
       ],
-      "@utils/*": [
-        "./src/utils/*"
-      ],
-      "@page-object/*": [
-        "./src/ui/page-objects/*"
-      ],
-      "@page-element/*": [
-        "./src/ui/page-elements/*"
+      "@config/*": [
+        "./src/config/*"
       ],
       "@api/*": [
         "./src/api/*"
       ],
-      "@controller/*": [
-        "./src/controllers/*"
+      "@services/*": [
+        "./src/api/services/*"
       ],
-      "@helper/*": [
-        "./src/helpers/*"
-      ],
-      "@entities/*": [
-        "./src/entities/*"
+      "@controllers/*": [
+        "./src/api/controllers/*"
       ],
       "@schemas/*": [
-        "./src/entities/schemas/*"
+        "./src/data/schemas/*"
       ],
       "@factories/*": [
-        "./src/entities/factories/*"
+        "./src/data/factories/*"
       ],
+      "@ui/*": [
+        "./src/ui/*"
+      ],
+      "@pages/*": [
+        "./src/ui/page-objects/*"
+      ],
+      "@elements/*": [
+        "./src/ui/page-elements/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ]
     },
     "sourceMap": true,
     "declaration": false,

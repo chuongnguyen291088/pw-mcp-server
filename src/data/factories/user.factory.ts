@@ -1,4 +1,4 @@
-import { NewUserRequestSchema } from "@entities/schemas/requests/NewUser.schema";
+import { NewUserRequestSchema } from "@schemas/requests/NewUser.schema";
 import { faker } from "@faker-js/faker";
 import { z } from "zod";
 

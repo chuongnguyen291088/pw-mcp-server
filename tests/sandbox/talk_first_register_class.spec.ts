@@ -1,4 +1,4 @@
-import { test } from "@test-options";
+import { test } from "../../src/config/test-options";
 
 const baseUrl = 'https://campus.talkfirst.vn';
 const registerClassPath = '/api/student/my-schedule/';
@@ -94,7 +94,7 @@ test.describe('Register Talk First English Class', () => {
             .POST(expectedStatusCode, { logRequestHeaders: true, logRequestBody: true, logResponseBody: true })
     });
 
-    test.skip('Register the 3rd skill class', async ({ api }) => {
+    test('Register the 3rd skill class', async ({ api }) => {
         await api
             .url(baseUrl)
             .path(registerClassPath)

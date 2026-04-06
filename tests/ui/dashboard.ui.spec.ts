@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
-import { PageManager } from '@page-object/PageManager';
-import { properties } from '@properties-config';
+import { PageManager } from '@ui/page-objects/PageManager';
+import { properties } from '../../src/config/properties.config';
 
 const authFilePath = '.auth/user.json';
 const testEnv = `@${properties.env}`;

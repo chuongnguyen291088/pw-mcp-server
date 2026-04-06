@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
-import { properties } from './properties.config';
+import { properties } from '@config/properties.config';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
@@ -44,36 +44,54 @@ export default defineConfig({
   projects: [
     {
       name: 'Orange HRM Setup',
-      testMatch: '**/authentication.setup.ts'
+      testMatch: '**/setup/authentication.setup.ts'
     },
 
     {
-      name: 'Orange HRM Execution',
+      name: 'API Tests',
       use: { browserName: 'chromium', storageState: path.join(__dirname, '.auth/auth.json') },
       dependencies: ['Orange HRM Setup'],
-      testMatch: '**/01_**.spec.ts'
+      testDir: './tests/api',
+      testMatch: '**/*.api.spec.ts'
     },
 
     {
-      name: 'orangeHrm',
-      use: { browserName: 'chromium' },
-      testMatch: '**/orangeHrm.spec.ts'
+      name: 'UI Tests',
+      use: { browserName: 'chromium', storageState: path.join(__dirname, '.auth/auth.json') },
+      dependencies: ['Orange HRM Setup'],
+      testDir: './tests/ui',
+      testMatch: '**/navigation.ui.spec.ts'
     },
 
     {
-      name: 'Talk Fist Setup',
-      testMatch: '**/talk_first_authentication.setup.ts'
+      name: 'UI Tests',
+      use: { browserName: 'webkit' },
+      testDir: './tests/ui',
+      testMatch: '**/dashboard.ui.spec.ts'
     },
 
     {
-      name: 'Talk First Execution',
-      use: {
-        browserName: 'chromium',
-        storageState: path.join(__dirname, '.auth/talkFirstAuth.json')
-      },
-      dependencies: ['Talk Fist Setup'],
-      testMatch: '**/talk_first_register_class.ts'
-    }
+      name: 'E2E Tests',
+      use: { browserName: 'chromium', storageState: path.join(__dirname, '.auth/auth.json') },
+      dependencies: ['Orange HRM Setup'],
+      testDir: './tests/e2e',
+      testMatch: '**/*.e2e.spec.ts'
+    },
+
+    // {
+    //   name: 'Talk Fist Setup',
+    //   testMatch: '**/setup/talk_first_authentication.setup.ts'
+    // },
+
+    // {
+    //   name: 'Talk First Execution',
+    //   use: {
+    //     browserName: 'chromium',
+    //     storageState: path.join(__dirname, '.auth/talkFirstAuth.json')
+    //   },
+    //   dependencies: ['Talk Fist Setup'],
+    //   testMatch: '**/sandbox/talk_first_register_class.spec.ts'
+    // },
 
     // {
     //   name: 'firefox',

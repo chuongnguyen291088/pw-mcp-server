@@ -1,10 +1,10 @@
-import { UserManagementController } from "@controller/userManagementController";
-import { prepareContactDetailsPayload } from "@entities/factories/ContactDetails.factory";
-import { prepareNewEmployeePayload } from "@entities/factories/NewEmployee.factory";
-import { prepareNewUserPayload } from "@entities/factories/NewUser.factory";
-import { NewEmployeeResponseSchema } from "@entities/schemas/responses/NewEmployee.schema";
-import { NewUserResponseSchema } from "@entities/schemas/responses/NewUser.schema";
-import { test, expect } from "@test-options";
+import { UserManagementController } from "@api/controllers/userManagementController";
+import { prepareContactDetailsPayload } from "@factories/contact-details.factory";
+import { prepareNewEmployeePayload } from "@factories/employee.factory";
+import { prepareNewUserPayload } from "@factories/user.factory";
+import { NewEmployeeResponseSchema } from "@schemas/responses/NewEmployee.schema";
+import { NewUserResponseSchema } from "@schemas/responses/NewUser.schema";
+import { test, expect } from "../../src/config/test-options";
 import { z } from "zod";
 
 type NewEmployeeRes = z.infer<typeof NewEmployeeResponseSchema>;
@@ -63,13 +63,3 @@ for (let i = 0; i < 5; i++) {
         });
     });
 }
-
-test.skip('zod integration', async ({ api }) => {
-    const userManagementController = new UserManagementController(api)
-    let empNo: number;
-
-    await test.step('create new employee', async () => {
-        const payload = prepareNewEmployeePayload();
-        empNo = await userManagementController.getEmpNumber(payload);
-    });
-});

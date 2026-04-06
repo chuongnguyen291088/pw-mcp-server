@@ -1,7 +1,7 @@
 import { test as base } from "@playwright/test";
-import { RequestHandler } from "@utils/requestHandler";
-import { APILogger } from "@utils/apiLogger";
-import { PageManager } from "@page-object/PageManager";
+import { RequestHandler } from "@api/base/RequestHandler";
+import { ApiLogger } from "@utils/ApiLogger";
+import { PageManager } from "@ui/page-objects/PageManager";
 
 export type TestOptions = {
     api: RequestHandler,
@@ -23,7 +23,7 @@ export const test = base.extend<TestOptions>({
     },
 
     api: async ({ request }, use) => {
-        const logger = new APILogger()
+        const logger = new ApiLogger()
         const api = new RequestHandler(request, logger)
         await use(api)
     }
